@@ -7,7 +7,7 @@
 #### 安装 fish shell 和现代命令行工具
 
 ```
-curl  -fsSL https://raw.githubusercontent.com/vewWLE829/linux_terminal_init/refs/heads/master/setup_chinese_locale.sh  | bash
+curl  -fsSL https://raw.githubusercontent.com/vewWLE829/linux_terminal_init/refs/heads/master/install_modern_cli.sh  | bash
 ```
 
 #### 释放 53 端口
