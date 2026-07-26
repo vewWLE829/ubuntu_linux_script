@@ -2,6 +2,7 @@
 set -e
 
 step() {
+    echo ""
     echo "👉 $1"
     sleep 1.5
 }
