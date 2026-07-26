@@ -53,7 +53,10 @@ apt install -y \
     bat \
     zoxide \
     ripgrep \
-    fd-find
+    fd-find \
+    jq \
+    aria2
+
 
 # 配置 fd 命令兼容性
 step "配置 fd 命令兼容性"
@@ -116,6 +119,7 @@ alias ls='eza --icons'
 alias ll='eza -la --icons'
 alias la='eza -a --icons'
 alias lt='eza --tree --level=2 --icons'
+alias aria2='aria2c -c -x 8 -s 8 -k 1M --file-allocation=none --auto-file-renaming=false'
 EOF
 
 cat > ~/.config/fish/conf.d/zoxide.fish << 'EOF'
