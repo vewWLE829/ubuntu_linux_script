@@ -14,6 +14,7 @@ apt update
 step "安装基础工具"
 apt install -y \
     curl \
+    vim \
     wget
 
 # 安装 Fish 4
