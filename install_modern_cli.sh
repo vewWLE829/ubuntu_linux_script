@@ -18,6 +18,35 @@ apt install -y \
     vim \
     wget
 
+# 配置 Vim
+step "配置 Vim"
+if [ ! -f ~/.vimrc ]; then
+    cat > ~/.vimrc << 'EOF'
+" 显示行号
+set number
+
+" 开启语法高亮
+syntax on
+
+" 自动缩进
+set autoindent
+
+" Tab 使用 4 个空格
+set tabstop=4
+set shiftwidth=4
+set expandtab
+
+" 搜索高亮
+set hlsearch
+
+" 支持鼠标操作
+set mouse=a
+EOF
+    echo "✅ Vim 配置完成"
+else
+    echo "✅ ~/.vimrc 已存在，跳过"
+fi
+
 # 安装 Fish 4
 step "安装 Fish 4.0+"
 
