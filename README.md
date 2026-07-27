@@ -25,5 +25,5 @@ curl  -fsSL https://raw.githubusercontent.com/vewWLE829/linux_terminal_init/refs
 #### 安装 MesloLGS 字体
 
 ```
-curl  -fsSL https://raw.githubusercontent.com/vewWLE829/linux_terminal_init/refs/heads/master/install_ Nerd_Font.sh  | bash
+curl  -fsSL https://raw.githubusercontent.com/vewWLE829/linux_terminal_init/refs/heads/master/install_Nerd_Font.sh  | bash
 ```
