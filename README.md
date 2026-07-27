@@ -1,6 +1,6 @@
-# linux_terminal_init
+# ubuntu_linux_script
 
-一个存放美化终端环境脚本的项目
+一个存放ubuntu linux系统脚本的项目
 
 ## 脚本列表
 
