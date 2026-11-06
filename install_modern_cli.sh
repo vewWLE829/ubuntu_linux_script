@@ -101,8 +101,33 @@ fi
 # 安装现代命令行工具
 step "安装现代命令行工具"
 
+# Ubuntu 24.04 开始，Ubuntu 官方仓库提供 eza；低于Ubuntu 24.04(比如: Ubuntu 22.04) 版本使用 eza 官方 APT 仓库。
+. /etc/os-release
+UBUNTU_VERSION="${VERSION_ID:-0}"
+UBUNTU_BELOW_24_04=false
+if [ "${ID:-}" = "ubuntu" ] && [ "$(printf '%s\n' "$UBUNTU_VERSION" "24.04" | sort -V | head -n1)" != "24.04" ]; then
+    UBUNTU_BELOW_24_04=true
+fi
+
+if [ "$UBUNTU_BELOW_24_04" = true ]; then
+    KEYRING="/etc/apt/keyrings/gierens.gpg"
+    SOURCE_LIST="/etc/apt/sources.list.d/gierens.list"
+
+    apt install -y gpg
+    mkdir -p /etc/apt/keyrings
+
+    info "Ubuntu ${UBUNTU_VERSION} 低于 24.04，添加 eza 官方仓库"
+    wget -qO- https://raw.githubusercontent.com/eza-community/eza/main/deb.asc \
+        | gpg --dearmor --yes -o "$KEYRING"
+    chmod 0644 "$KEYRING"
+    printf 'deb [signed-by=%s] http://deb.gierens.de stable main\n' "$KEYRING" \
+        > "$SOURCE_LIST"
+    apt update
+fi
+
+apt install -y eza
+
 apt install -y \
-    eza \
     bat \
     zoxide \
     ripgrep \
