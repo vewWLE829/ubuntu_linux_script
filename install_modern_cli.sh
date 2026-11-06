@@ -138,7 +138,7 @@ fi
 # 安装 Delta 对比工具
 step "安装 Delta 对比工具"
 
-DELTA_VERSION="0.19.2"
+DELTA_VERSION="0.20.1"
 
 if ! command -v delta &>/dev/null; then
     wget -q -O /tmp/delta.deb \
