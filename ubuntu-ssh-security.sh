@@ -98,10 +98,12 @@ read -r ENABLE_PUBKEY
 case "$ENABLE_PUBKEY" in
     n|N)
         PUBKEY_AUTH="no"
+        ROOT_LOGIN="no"
         echo "密钥登录已禁用"
         ;;
     *)
         PUBKEY_AUTH="yes"
+        ROOT_LOGIN="prohibit-password"
         echo "密钥登录已开启"
         ;;
 esac
@@ -112,7 +114,7 @@ cat > "$CUSTOM_CONFIG" <<EOF
 Port ${SSH_PORT}
 PasswordAuthentication ${PASSWORD_AUTH}
 PubkeyAuthentication ${PUBKEY_AUTH}
-PermitRootLogin prohibit-password
+PermitRootLogin ${ROOT_LOGIN}
 EOF
 
 chmod 644 "$CUSTOM_CONFIG"
@@ -154,5 +156,5 @@ echo "✅ SSH 配置修改完成"
 echo "SSH 端口: ${SSH_PORT}"
 echo "密码登录: ${PASSWORD_AUTH}"
 echo "密钥登录: ${PUBKEY_AUTH}"
-echo "Root 登录: prohibit-password"
+echo "Root 登录: ${ROOT_LOGIN}"
 echo "备份文件: ${BACKUP_FILE}"
