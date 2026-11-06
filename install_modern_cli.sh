@@ -33,6 +33,7 @@ success "软件源更新完成"
 step "安装基础工具"
 apt install -y \
     curl \
+    git \
     vim \
     wget
 success "基础工具安装完成"
