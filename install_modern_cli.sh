@@ -179,7 +179,7 @@ fi
 
 # 安装 tldr 命令帮助工具
 step "安装 tldr 命令帮助工具"
-TLDR_VERSION="v1.8.1"
+TLDR_VERSION="v1.9.1"
 
 if ! command -v tldr &>/dev/null; then
     TLDR_URL="https://github.com/tealdeer-rs/tealdeer/releases/download/${TLDR_VERSION}/tealdeer-linux-x86_64-musl"
