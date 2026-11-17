@@ -98,17 +98,30 @@ read -r ENABLE_PUBKEY
 case "$ENABLE_PUBKEY" in
     n|N)
         PUBKEY_AUTH="no"
-        ROOT_LOGIN="no"
         echo "密钥登录已禁用"
         ;;
     *)
         PUBKEY_AUTH="yes"
-        ROOT_LOGIN="prohibit-password"
         echo "密钥登录已开启"
         ;;
 esac
 
-# 7. 写入 SSH 配置
+# 7. 是否允许 Root 登录
+printf "是否允许 Root 登录? (Y/n): "
+read -r ENABLE_ROOT
+
+case "$ENABLE_ROOT" in
+    n|N)
+        ROOT_LOGIN="no"
+        echo "Root 登录已禁止"
+        ;;
+    *)
+        ROOT_LOGIN="prohibit-password"
+        echo "Root 允许使用密钥登录"
+        ;;
+esac
+
+# 8. 写入 SSH 配置
 cat > "$CUSTOM_CONFIG" <<EOF
 # Custom SSH Configuration
 Port ${SSH_PORT}
@@ -119,7 +132,7 @@ EOF
 
 chmod 644 "$CUSTOM_CONFIG"
 
-# 8. 检查 SSH 配置语法
+# 9. 检查 SSH 配置语法
 echo "==> 检查 sshd 配置"
 
 if "$SSHD_BIN" -t; then
@@ -136,7 +149,7 @@ else
     exit 1
 fi
 
-# 9. 重启 SSH 服务
+# 10. 重启 SSH 服务
 echo "==> 重启 SSH 服务"
 
 if ! systemctl restart ssh; then
