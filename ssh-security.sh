@@ -23,7 +23,7 @@ TARGET_USER="${SUDO_USER:-root}"
 USER_HOME=$(getent passwd "$TARGET_USER" | cut -d: -f6)
 AUTH_KEYS="${USER_HOME}/.ssh/authorized_keys"
 
-if [ -s "$AUTH_KEYS" ]; then
+if [ -f "$AUTH_KEYS" ]; then
     echo "✅ 检测到 SSH 公钥文件: $AUTH_KEYS"
 else
     echo "⚠️ 未检测到 SSH 公钥文件: $AUTH_KEYS"
